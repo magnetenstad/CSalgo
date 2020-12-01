@@ -1,5 +1,6 @@
 from lib.TMA4100.fixed_point_iteration import main as fixed_point_iteration
 from lib.TMA4100.newton import main as newton
+from lib.TMA4100.simpson import main as simpson
 from lib.TMA4140.chinese_remainder_theorem import main as chinese_remainder_theorem
 from lib.TMA4140.truth_table import main as truth_table
 from lib.TMA4140.relation_properties import main as relation_properties
@@ -10,7 +11,8 @@ COURSE = None
 
 TOOLS = {
 	0: 	(("Fixed point iteration", fixed_point_iteration),
-		("Newton", newton)),
+		("Newton's method", newton),
+		("Simpson's method", simpson)),
 
 	1: 	(("Chinese remainder theorem", chinese_remainder_theorem),
 		("Truth table", truth_table),
@@ -32,7 +34,7 @@ def ask_for_tool():
 	print("\nTOOLS:")
 	for i, tool in enumerate(TOOLS[COURSE]):
 		print("\t", i, tool[0])
-	TOOL = max(0, min(len(COURSES)-1, int(input("\nChoose tool: "))))
+	TOOL = max(0, min(len(TOOLS[COURSE])-1, int(input("\nChoose tool: "))))
 	print(f"You chose {TOOLS[COURSE][TOOL][0]}")
 	
 
