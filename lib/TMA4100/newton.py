@@ -1,4 +1,7 @@
-from math import atan, sin, cos
+from math import *
+from ..lib import *
+
+# Function from TMA4100 Wiki
 
 def newton(f, df, x0, tol=1.e-8, max_iter=30):
 	# Solve f(x)=0 by Newtons method
@@ -23,32 +26,22 @@ def newton(f, df, x0, tol=1.e-8, max_iter=30):
 
 def newton_analog(f, df, x0, n, show_fx=False):
 	x = x0
-	print(f"\nx_0\t= {x}\nf(x_0)\t= {f(x):10.3e}\n")
-	for k in range(n):
-		fx = f(x)
-		dfx = df(x)
+	print(f"\nx_0\t= {x}\nf(x_0)\t= {compute(f, [('x', x)]):10.3e}\n")
+	for i in range(n):
+		fx = compute(f, [('x', x)])
+		dfx = compute(df, [('x', x)])
 		x_next = x - fx / dfx
-		print(f"x_{k+1}\t= x_{k} - f(x_{k}) / df(x_{k})\n\t= {x:.4f} - ({fx:.4f} / {dfx:.4f})\n\t= {x_next:.4f}")
-		print(f"f(x_{k+1})\t= {f(x_next):10.3e}\n" * show_fx)
+		print(f"x_{i+1}\t= x_{i} - f(x_{i}) / df(x_{i})\n\t= {x:.4f} - ({fx:.4f} / {dfx:.4f})\n\t= {x_next:.4f}")
+		print(f"f(x_{i+1})\t= {compute(f, [('x', x_next)]):10.3e}\n" * show_fx)
 		x = x_next
 	return x
 
-# Example 2
-"""
-def f(x):                   # The function f
-	return atan(x) - 2*x + 4
-
-def df(x):                  # The derivative f'
-	return 1 / (x**2 + 1) - 2
-
-x0 = 2          # Starting value
-x = newton_analog(f, df, x0, 3)  # Apply Newton
-"""
 # x, nit = newton(f, df, x0, tol=1.e-10, max_iter=30)  # Apply Newton
 # print('\n\nResult:\nx={}, number of iterations={}'.format(x, nit))
 
 def main():
-	pass
+	f, df, x0, n = ask(("f", "df", "x0", "n"), (str, str, float, int))
+	newton_analog(f, df, x0, n)
 
 if __name__ == "__main__":
 	main()

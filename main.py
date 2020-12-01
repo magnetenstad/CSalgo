@@ -25,14 +25,15 @@ def ask_for_course():
 	for i, course in enumerate(COURSES):
 		print("\t", i, course)
 	COURSE = max(0, min(len(COURSES)-1, int(input("\nChoose course: ")))) 
-
+	print(f"You chose {COURSES[COURSE]}")
 
 def ask_for_tool():
 	global TOOL
 	print("\nTOOLS:")
 	for i, tool in enumerate(TOOLS[COURSE]):
 		print("\t", i, tool[0])
-	TOOL = max(0, min(len(COURSES)-1, int(input("\nChoose tool: ")))) 
+	TOOL = max(0, min(len(COURSES)-1, int(input("\nChoose tool: "))))
+	print(f"You chose {TOOLS[COURSE][TOOL][0]}")
 	
 
 def main():
@@ -42,6 +43,7 @@ def main():
 		if COURSE == None or TOOL == None or command != "r":
 			ask_for_course()
 			ask_for_tool()
+			print()
 		try:
 			TOOLS[COURSE][TOOL][1]()
 		except Exception as e:
