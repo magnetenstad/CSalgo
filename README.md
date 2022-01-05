@@ -1,5 +1,6 @@
-# CSauto - Computer Science - automated.
+# CSalgo
+Algorithms from TMA4100 and TMA4140
 
-Dependencies:
+## Dependencies
 - Python 3.x
-  - math, numpy
+  - numpy
